@@ -4,7 +4,7 @@ import logo from "@/assets/tutorx-logo.png.asset.json";
 import { cn } from "@/lib/utils";
 
 export function Logo({ className }: { className?: string }) {
-  return <img src={logo.url} alt="TutorX AI" className={cn("h-9 w-auto object-contain object-left", className)} />;
+  return <img src={logo.url} alt="TutorX AI" className={cn("h-14 w-auto object-contain object-left", className)} />;
 }
 
 type Tone = "primary" | "accent" | "lime" | "brand" | "plain";
