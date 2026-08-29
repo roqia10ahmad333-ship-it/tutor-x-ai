@@ -10,12 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CertificateRouteImport } from './routes/certificate'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as InterviewRouteImport } from './routes/interview'
+import { Route as TeamRouteImport } from './routes/team'
+import { Route as LessonLessonIdRouteImport } from './routes/lesson.$lessonId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CertificateRoute = CertificateRouteImport.update({
+  id: '/certificate',
+  path: '/certificate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -28,35 +36,76 @@ const InterviewRoute = InterviewRouteImport.update({
   path: '/interview',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LessonLessonIdRoute = LessonLessonIdRouteImport.update({
+  id: '/lesson/$lessonId',
+  path: '/lesson/$lessonId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/certificate': typeof CertificateRoute
   '/dashboard': typeof DashboardRoute
   '/interview': typeof InterviewRoute
+  '/team': typeof TeamRoute
+  '/lesson/$lessonId': typeof LessonLessonIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/certificate': typeof CertificateRoute
   '/dashboard': typeof DashboardRoute
   '/interview': typeof InterviewRoute
+  '/team': typeof TeamRoute
+  '/lesson/$lessonId': typeof LessonLessonIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/certificate': typeof CertificateRoute
   '/dashboard': typeof DashboardRoute
   '/interview': typeof InterviewRoute
+  '/team': typeof TeamRoute
+  '/lesson/$lessonId': typeof LessonLessonIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/interview'
+  fullPaths:
+    | '/'
+    | '/certificate'
+    | '/dashboard'
+    | '/interview'
+    | '/team'
+    | '/lesson/$lessonId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/interview'
-  id: '__root__' | '/' | '/dashboard' | '/interview'
+  to:
+    | '/'
+    | '/certificate'
+    | '/dashboard'
+    | '/interview'
+    | '/team'
+    | '/lesson/$lessonId'
+  id:
+    | '__root__'
+    | '/'
+    | '/certificate'
+    | '/dashboard'
+    | '/interview'
+    | '/team'
+    | '/lesson/$lessonId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CertificateRoute: typeof CertificateRoute
   DashboardRoute: typeof DashboardRoute
   InterviewRoute: typeof InterviewRoute
+  TeamRoute: typeof TeamRoute
+  LessonLessonIdRoute: typeof LessonLessonIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/certificate': {
+      id: '/certificate'
+      path: '/certificate'
+      fullPath: '/certificate'
+      preLoaderRoute: typeof CertificateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -82,13 +138,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InterviewRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lesson/$lessonId': {
+      id: '/lesson/$lessonId'
+      path: '/lesson/$lessonId'
+      fullPath: '/lesson/$lessonId'
+      preLoaderRoute: typeof LessonLessonIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CertificateRoute: CertificateRoute,
   DashboardRoute: DashboardRoute,
   InterviewRoute: InterviewRoute,
+  TeamRoute: TeamRoute,
+  LessonLessonIdRoute: LessonLessonIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
