@@ -79,7 +79,8 @@ const FORMAT_BY_INTELLIGENCE: Record<Intelligence, LessonFormat[]> = {
 
 export function formatsFor(p: Profile): LessonFormat[] {
   const base = FORMAT_BY_INTELLIGENCE[p.intelligence];
-  if (p.age <= 14 && !base.includes("game")) return ["game", ...base].slice(0, 4);
+  if (p.age <= 14 && !base.includes("game"))
+    return (["game", ...base] as LessonFormat[]).slice(0, 4);
   return base;
 }
 
