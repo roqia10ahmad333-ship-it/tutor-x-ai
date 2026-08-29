@@ -39,7 +39,7 @@ function Landing() {
 
       <div className="brut-lg relative z-10 w-full max-w-xl rounded-3xl bg-card p-8 sm:p-10">
         <div className="flex flex-col items-center text-center">
-          <Logo className="h-14" />
+          <Logo className="h-24" />
           <p className="label-mono mt-3 text-muted-foreground">Adaptive learning copilot</p>
 
           <h1 className="mt-6 text-4xl font-bold uppercase leading-[0.95] sm:text-5xl">
